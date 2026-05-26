@@ -6,7 +6,12 @@
       "type": "header",
       "settings": {
         "logo_text": "hehku",
-        "menu": "main-menu",
+        "shop_label": "Shop",
+        "shop_url": "/collections/all",
+        "bestsellers_label": "Bestsellers",
+        "bestsellers_url": "/collections/bestsellers",
+        "bundles_label": "Bundles",
+        "bundles_url": "/pages/bundles",
         "country_label": "GERMANY",
         "sticky": true
       }
