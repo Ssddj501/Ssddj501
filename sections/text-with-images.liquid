@@ -1,0 +1,110 @@
+{%- liquid
+  assign cols = section.blocks | size
+  if cols == 0
+    assign cols = 4
+  endif
+-%}
+
+<section class="text-with-images" style="--tile-cols: {{ cols }};">
+  <div class="text-with-images__intro">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="text-with-images__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <div class="text-with-images__body">{{ section.settings.body }}</div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="text-with-images__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign bg = block.settings.background_color | default: '#f4f4f4'
+          assign link = block.settings.link | default: '#'
+        -%}
+        <a
+          href="{{ link }}"
+          class="text-with-images__tile"
+          style="--tile-bg: {{ bg }};"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            <img
+              src="{{ block.settings.image | image_url: width: 800 }}"
+              srcset="{{ block.settings.image | image_url: width: 400 }} 400w, {{ block.settings.image | image_url: width: 800 }} 800w, {{ block.settings.image | image_url: width: 1200 }} 1200w"
+              sizes="(min-width: 990px) 25vw, 50vw"
+              alt="{{ block.settings.image.alt | escape }}"
+              loading="lazy"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+            >
+          {%- endif -%}
+          {%- if block.settings.label != blank -%}
+            <span class="text-with-images__tile-label">{{ block.settings.label }}</span>
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Text with images",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your glow-up starts here"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Whether you're soothing sensitive skin, clearing breakouts, or chasing that glass-skin glow, <strong>Smuuti Skin</strong> products make skincare fun, effective, and easy to love.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Image tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#f4f4f4"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text with images",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" }
+      ]
+    }
+  ]
+}
+{% endschema %}
