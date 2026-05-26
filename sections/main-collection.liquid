@@ -1,0 +1,93 @@
+{%- liquid
+  assign products_per_page = section.settings.products_per_page | default: 12
+  paginate collection.products by products_per_page
+-%}
+
+<section class="collection">
+  <div class="collection__toolbar">
+    <div class="collection__toolbar-left">
+      <button type="button" class="toolbar-dropdown" data-filter-toggle>
+        <span>{{ 'collections.general.filter' | t | default: 'Filter' }}</span>
+        <span class="toolbar-dropdown__chip" aria-hidden="true">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+
+    <div class="collection__toolbar-count">
+      {{ collection.products_count }} {%- if collection.products_count == 1 %} product{% else %} products{% endif -%}
+    </div>
+
+    <div class="collection__toolbar-right">
+      <form class="toolbar-sort" method="get">
+        <label for="SortBy" class="visually-hidden">{{ 'collections.sorting.title' | t | default: 'Sort by' }}</label>
+        <div class="toolbar-dropdown">
+          <select id="SortBy" name="sort_by" class="toolbar-sort__select" onchange="this.form.submit()">
+            {%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+            <option value="manual"        {% if current_sort == 'manual' %}selected{% endif %}>Featured</option>
+            <option value="best-selling"  {% if current_sort == 'best-selling' %}selected{% endif %}>Best selling</option>
+            <option value="price-ascending"  {% if current_sort == 'price-ascending' %}selected{% endif %}>Price, low to high</option>
+            <option value="price-descending" {% if current_sort == 'price-descending' %}selected{% endif %}>Price, high to low</option>
+            <option value="title-ascending"  {% if current_sort == 'title-ascending' %}selected{% endif %}>A-Z</option>
+            <option value="title-descending" {% if current_sort == 'title-descending' %}selected{% endif %}>Z-A</option>
+            <option value="created-descending" {% if current_sort == 'created-descending' %}selected{% endif %}>Newest</option>
+          </select>
+          <span class="toolbar-dropdown__chip" aria-hidden="true">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {%- if collection.products.size > 0 -%}
+    <div class="product-grid">
+      {%- for product in collection.products -%}
+        {%- render 'product-card', product: product, card_index: forloop.index0 -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" aria-label="Pagination">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="pagination__link">&larr; Previous</a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="pagination__link">{{ part.title }}</a>
+          {%- else -%}
+            <span class="pagination__current">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="pagination__link">Next &rarr;</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- else -%}
+    <p class="collection__empty">No products found.</p>
+  {%- endif -%}
+</section>
+
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 4,
+      "max": 48,
+      "step": 4,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

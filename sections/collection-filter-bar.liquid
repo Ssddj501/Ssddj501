@@ -1,0 +1,68 @@
+{%- liquid
+  assign active_handle = collection.handle | default: ''
+-%}
+
+<nav class="filter-bar" aria-label="Collection filter">
+  <div class="filter-bar__scroller">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign target_handle = block.settings.collection.handle
+        assign is_active = false
+        if active_handle != '' and target_handle == active_handle
+          assign is_active = true
+        endif
+      -%}
+      <a
+        href="{{ block.settings.collection.url | default: block.settings.link | default: '#' }}"
+        class="filter-pill{% if is_active %} is-active{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        {{ block.settings.label | default: block.settings.collection.title }}
+      </a>
+    {%- endfor -%}
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Collection filter bar",
+  "max_blocks": 12,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "pill",
+      "name": "Filter pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection (auto-detects active state)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link (overrides collection URL)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection filter bar",
+      "blocks": [
+        { "type": "pill", "settings": { "label": "All products" } },
+        { "type": "pill", "settings": { "label": "Cleansers" } },
+        { "type": "pill", "settings": { "label": "Toners" } },
+        { "type": "pill", "settings": { "label": "Serums" } },
+        { "type": "pill", "settings": { "label": "Moisturizers" } },
+        { "type": "pill", "settings": { "label": "Lip Care" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

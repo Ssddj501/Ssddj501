@@ -1,0 +1,95 @@
+{%- liquid
+  comment
+    Renders a Hehku-style product card.
+    Accepts: product (required), card_index (optional, used for color rotation fallback)
+  endcomment
+
+  assign card_bg = product.metafields.custom.card_background.value
+
+  if card_bg == blank
+    assign palette = '#ffd54f|#f8bbd9|#b8f0a0|#ffb74d' | split: '|'
+    assign idx = card_index | default: forloop.index0 | default: 0
+    assign mod = idx | modulo: palette.size
+    assign card_bg = palette[mod]
+  endif
+
+  assign first_variant = product.selected_or_first_available_variant
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+    assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round
+  endif
+
+  assign tags_down = product.tags | join: ',' | downcase
+-%}
+
+<article class="product-card" data-product-card>
+  <a href="{{ product.url }}" class="product-card__media-link" aria-label="{{ product.title | escape }}">
+    <div class="product-card__media" style="--card-bg: {{ card_bg }};">
+      <div class="product-card__badges">
+        {%- if on_sale -%}
+          <span class="badge badge--off">{{ discount }}% OFF</span>
+        {%- endif -%}
+        {%- if tags_down contains 'bestseller' -%}
+          <span class="badge badge--bestseller">BESTSELLER</span>
+        {%- endif -%}
+        {%- if tags_down contains 'trending' -%}
+          <span class="badge badge--trending">TRENDING</span>
+        {%- endif -%}
+        {%- if tags_down contains 'new' -%}
+          <span class="badge badge--new">NEW</span>
+        {%- endif -%}
+      </div>
+
+      {%- if product.featured_image != blank -%}
+        <img
+          class="product-card__image"
+          src="{{ product.featured_image | image_url: width: 800 }}"
+          srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w, {{ product.featured_image | image_url: width: 1200 }} 1200w"
+          sizes="(min-width: 990px) 33vw, 50vw"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          loading="lazy"
+          width="{{ product.featured_image.width }}"
+          height="{{ product.featured_image.height }}"
+        >
+      {%- else -%}
+        <div class="product-card__placeholder">
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+
+      {%- if first_variant.available -%}
+        <div class="product-card__cta">
+          <button
+            type="button"
+            class="btn btn--mint product-card__add"
+            data-quick-add="{{ first_variant.id }}"
+          >
+            {{ 'products.product.add_to_cart' | t | default: 'Add to cart' }}
+          </button>
+        </div>
+      {%- else -%}
+        <div class="product-card__cta">
+          <span class="product-card__soldout">{{ 'products.product.sold_out' | t | default: 'Sold out' }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div class="product-card__info">
+    {%- if product.vendor != blank -%}
+      <p class="product-card__vendor">{{ product.vendor }}</p>
+    {%- endif -%}
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    <p class="product-card__price">
+      {%- if on_sale -%}
+        <span class="price price--sale">{{ product.price | money }}</span>
+        <s class="price price--compare">{{ product.compare_at_price | money }}</s>
+      {%- else -%}
+        <span class="price">{{ product.price | money }}</span>
+      {%- endif -%}
+    </p>
+  </div>
+</article>
