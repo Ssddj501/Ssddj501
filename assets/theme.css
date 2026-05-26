@@ -717,3 +717,33 @@ body.drawer-open { overflow: hidden; }
 .pagination__link:hover { background: rgba(0,0,0,0.06); }
 
 .collection__empty { text-align: center; padding: 60px 0; opacity: 0.6; }
+
+/* ==========================================================================
+   Bundles page
+   ========================================================================== */
+
+.bundles-hero {
+  background: var(--bundles-bg, #cdf2bc);
+  padding: 90px 28px 100px;
+}
+.bundles-hero__inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+.bundles-hero__heading {
+  font-size: clamp(56px, 9vw, 120px);
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+.bundles-hero__body {
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--color-text);
+}
+.bundles-hero__body p { margin: 0; }
+
+.bundles-filter { padding: 28px 0 8px; background: transparent; }
+.bundles-collection { padding-top: 8px; }

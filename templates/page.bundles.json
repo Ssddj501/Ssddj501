@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "bundles": {
+      "type": "bundles-page",
+      "blocks": {
+        "p1": { "type": "pill", "settings": { "label": "Toners" } },
+        "p2": { "type": "pill", "settings": { "label": "Serums" } },
+        "p3": { "type": "pill", "settings": { "label": "Moisturizers" } },
+        "p4": { "type": "pill", "settings": { "label": "Lip Care" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    }
+  },
+  "order": ["bundles"]
+}
