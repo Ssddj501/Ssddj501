@@ -1,0 +1,35 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 50px 28px;
+    margin-top: 80px;
+  }
+  .site-footer__inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .site-footer__copy {
+    margin: 0;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [],
+  "presets": [{ "name": "Footer" }]
+}
+{% endschema %}

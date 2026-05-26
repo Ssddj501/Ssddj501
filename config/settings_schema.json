@@ -1,0 +1,99 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Hehku-inspired",
+    "theme_version": "0.1.0",
+    "theme_author": "Custom",
+    "theme_documentation_url": "https://shopify.dev/themes",
+    "theme_support_url": "mailto:support@example.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#1a1a1a"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (mint)",
+        "default": "#b8f0a0"
+      },
+      {
+        "type": "header",
+        "content": "Product badges"
+      },
+      {
+        "type": "color",
+        "id": "color_badge_off",
+        "label": "Discount badge",
+        "default": "#ff4444"
+      },
+      {
+        "type": "color",
+        "id": "color_badge_bestseller",
+        "label": "Bestseller badge",
+        "default": "#ff69b4"
+      },
+      {
+        "type": "color",
+        "id": "color_badge_trending",
+        "label": "Trending badge",
+        "default": "#4caf50"
+      }
+    ]
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Will be scaled to 32x32."
+      }
+    ]
+  },
+  {
+    "name": "Product card colors",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Default background colors used for product cards. Each product can override these via metafield 'custom.card_background'."
+      },
+      {
+        "type": "color",
+        "id": "card_color_yellow",
+        "label": "Yellow",
+        "default": "#ffd54f"
+      },
+      {
+        "type": "color",
+        "id": "card_color_pink",
+        "label": "Pink",
+        "default": "#f8bbd9"
+      },
+      {
+        "type": "color",
+        "id": "card_color_green",
+        "label": "Green",
+        "default": "#b8f0a0"
+      },
+      {
+        "type": "color",
+        "id": "card_color_orange",
+        "label": "Orange",
+        "default": "#ffb74d"
+      }
+    ]
+  }
+]

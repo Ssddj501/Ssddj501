@@ -1,0 +1,45 @@
+{
+  "general": {
+    "accessibility": {
+      "menu": "Open menu",
+      "close": "Close",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "from_price_html": "From {{ price }}"
+    }
+  },
+  "collections": {
+    "general": {
+      "filter": "Filter",
+      "sort_by": "Sort by",
+      "products_count": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      }
+    },
+    "sorting": {
+      "title": "Sort by",
+      "manual": "Featured",
+      "best_selling": "Best selling",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "title_ascending": "Alphabetically, A-Z",
+      "title_descending": "Alphabetically, Z-A",
+      "created_ascending": "Date, old to new",
+      "created_descending": "Date, new to old"
+    }
+  }
+}

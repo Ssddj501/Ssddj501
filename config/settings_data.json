@@ -1,0 +1,17 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_background": "#ffffff",
+      "color_text": "#1a1a1a",
+      "color_accent": "#b8f0a0",
+      "color_badge_off": "#ff4444",
+      "color_badge_bestseller": "#ff69b4",
+      "color_badge_trending": "#4caf50",
+      "card_color_yellow": "#ffd54f",
+      "card_color_pink": "#f8bbd9",
+      "card_color_green": "#b8f0a0",
+      "card_color_orange": "#ffb74d"
+    }
+  }
+}

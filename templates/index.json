@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "background_color": "#b8f0a0",
+        "min_height": 90,
+        "text_position": "center"
+      }
+    }
+  },
+  "order": ["hero"]
+}

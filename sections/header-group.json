@@ -1,0 +1,16 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_text": "hehku",
+        "menu": "main-menu",
+        "country_label": "GERMANY",
+        "sticky": true
+      }
+    }
+  },
+  "order": ["header"]
+}
