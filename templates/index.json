@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -7,7 +16,17 @@
         "min_height": 90,
         "text_position": "center"
       }
+    },
+    "scroll-reveal": {
+      "type": "scroll-reveal",
+      "settings": {
+        "eyebrow": "THE SOVÈNE RELIEF PATCH",
+        "heading": "Spürbare Linderung. Ohne Aufwand.",
+        "subheading": "Klinisch erprobte TENS-Technologie in einem ultradünnen, kabellosen Gerät — entwickelt für den täglichen Einsatz im Büro, beim Sport oder zuhause.",
+        "image_url": "https://cdn.shopify.com/s/files/1/1043/1103/0024/files/hf_20260604_234616_3cb26ac5-67af-48d9-8f89-8a9da93a4cba.png",
+        "image_alt": "SOVÈNE Relief Patch"
+      }
     }
   },
-  "order": ["hero"]
+  "order": ["hero", "scroll-reveal"]
 }
